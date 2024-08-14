@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -13,14 +14,14 @@ func NewDB() (*DB, error) {
 	var err error
 	db := &DB{}
 
-	db.DB, err = sql.Open("sqlite", "connection")
+	db.DB, err = sql.Open("sqlite3", "connection")
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return db, nil
 }
 
 func (d *DB) Close() {
-    d.DB.Close()
+	d.DB.Close()
 }

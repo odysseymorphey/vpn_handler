@@ -9,9 +9,9 @@ import (
 )
 
 type Server struct {
-	mux *http.ServeMux
+	mux    *http.ServeMux
 	server *http.Server
-	db *database.DB
+	db     *database.DB
 }
 
 func NewServer() (*Server, error) {
@@ -22,7 +22,7 @@ func NewServer() (*Server, error) {
 
 	server := &Server{
 		mux: http.NewServeMux(),
-		db: db,
+		db:  db,
 	}
 
 	return server, nil
@@ -46,7 +46,6 @@ func (s *Server) Run() error {
 
 	}()
 
-
 	return nil
 }
 
@@ -56,7 +55,7 @@ func (s *Server) Stop() {
 
 func (s *Server) beginRouting() {
 	s.server = &http.Server{
-		Addr: "127.0.0.1:880",
+		Addr:    "127.0.0.1:8800",
 		Handler: s.mux,
 	}
 
@@ -64,5 +63,8 @@ func (s *Server) beginRouting() {
 		w.Write([]byte("ZALUPA1488"))
 	})
 
-	
+	s.mux.HandleFunc("/create_user", createUser)
+	s.mux.HandleFunc("/read_user", readUser)
+	s.mux.HandleFunc("/update_user", updateUser)
+	s.mux.HandleFunc("/delete_user", deleteUser)
 }
