@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+	"vpn-handler/internal/models"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -24,4 +25,20 @@ func NewDB() (*DB, error) {
 
 func (d *DB) Close() {
 	d.DB.Close()
+}
+
+func (d *DB) CreateUser(name, email string) error {
+	return nil
+}
+
+func (d *DB) ReadUser(id int) (*models.User, error) {
+	return nil, nil
+}
+
+func (d *DB) UpdateUser(id int, name, email string) error {
+	return nil
+}
+
+func (d *DB) DeleteUser(id int) error {
+	return nil
 }
