@@ -15,7 +15,7 @@ func NewDB() (*DB, error) {
 	var err error
 	db := &DB{}
 
-	db.DB, err = sql.Open("sqlite3", "connection")
+	db.DB, err = sql.Open("sqlite3", "data.sqlite")
 	if err != nil {
 		return nil, err
 	}
